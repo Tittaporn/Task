@@ -18,11 +18,9 @@ class TaskDetailViewController: UIViewController {
     var task: Task?
     var date: Date?
     
-    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // taskDueDatePicker.delegate = self
         updateView()
     }
     
@@ -31,28 +29,18 @@ class TaskDetailViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let taskName = taskNameTextField.text, !taskName.isEmpty else { return }
-        //   let taskNote = taskNotesTextView.text, !taskNote.isEmpty,
-        // let date = date else { return }
-        
-        //if task is nil >> create new task
-        
-        if let task = task {
+      
+        if let task = task { // task is not nit >> have value >> update
             TaskController.shared.update(task: task, name: taskName, notes: taskNotesTextView.text, dueDate: date)
             
-        } else {
-            // not nit >> have value >> update
-            
+        } else { // task is nil >> create new task
             TaskController.shared.createTaskWith(name: taskName, notes: taskNotesTextView.text, dueDate: date)
         }
-        
-        
-        
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func dueDatePickerDateChanged(_ sender: Any) {
         self.date = taskDueDatePicker.date
-        
     }
     
     // MARK: - Helper Fuctions
@@ -62,5 +50,4 @@ class TaskDetailViewController: UIViewController {
         taskNotesTextView.text = task.notes
         taskDueDatePicker.date = task.dueDate ?? Date()
     }
-    
 }

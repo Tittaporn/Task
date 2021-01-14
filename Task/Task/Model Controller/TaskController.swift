@@ -52,17 +52,15 @@ class TaskController {
     // save
     func saveToPersistenceStore() {
         do {
-            // need to add Encodable on Song class
             let data = try JSONEncoder().encode(tasks)
             try data.write(to: fileURL())
-        } catch { //automatic catch error
+        } catch {
             print(error)
             print(error.localizedDescription)
         }
     }
     
     // load
-    
     func loadFromPersistanceStore() {
         do {
             let data = try Data(contentsOf: fileURL())

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 // MARK: - Protocol
 protocol TaskCompletionDelegate: AnyObject {
     func taskCellButtonTapped(_ sender: TaskTableViewCell)
